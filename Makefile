@@ -1,14 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kkamenny <kkamenny@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/23 18:57:41 by kkamenny          #+#    #+#             */
+/*   Updated: 2024/07/18 17:57:37 by kkamenny         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 NAME = libft.a
 CC = cc
-# Важно: -I. указывает искать заголовочные файлы в текущей директории
+
 CFLAGS = -Wall -Wextra -Werror -I.
 AR = ar rc
 RANLIB = ranlib
 
-# Указываем папку, где лежат исходники
 SRCDIR = src/
 
-# Список файлов (только имена)
 FILES = ft_isalnum.c ft_isprint.c ft_memcmp.c ft_putchar_fd.c ft_split.c \
         ft_strlcat.c ft_strncmp.c ft_substr.c ft_atoi.c ft_isalpha.c \
         ft_itoa.c ft_memcpy.c ft_putendl_fd.c ft_strchr.c ft_strlcpy.c \
@@ -17,10 +27,8 @@ FILES = ft_isalnum.c ft_isprint.c ft_memcmp.c ft_putchar_fd.c ft_split.c \
         ft_calloc.c ft_isdigit.c ft_memchr.c ft_memset.c ft_putstr_fd.c \
         ft_strjoin.c ft_strmapi.c ft_strtrim.c ft_striteri.c
 
-# Магия: добавляем префикс src/ ко всем файлам
 SRC = $(addprefix $(SRCDIR), $(FILES))
 
-# Объектные файлы будут создаваться там же, где исходники (в src/)
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
@@ -29,7 +37,6 @@ $(NAME): $(OBJ)
 	$(AR) $(NAME) $(OBJ)
 	$(RANLIB) $(NAME)
 
-# Правило компиляции подходит для файлов в подпапках
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
